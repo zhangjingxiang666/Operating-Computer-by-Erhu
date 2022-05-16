@@ -1,4 +1,4 @@
-import pyautogui#pyautogui使用0.9.2版本
+import pyautogui #pyautogui使用0.9.2版本
 import pyaudio
 import wave
 import librosa
