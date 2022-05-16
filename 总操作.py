@@ -1,4 +1,4 @@
-import pyautogui #pyautogui使用0.9.2版本
+import pyautogui#pyautogui使用0.9.2版本
 import pyaudio
 import wave
 import librosa
@@ -69,11 +69,11 @@ while True: #死循环--一直运行
 
     '''3. 从时变频谱矩阵中找到每个音符的基音对应的行
     二胡控制的思路是：找到该音调的基音频率在时变频谱矩阵中的那一行。对该行的单元格值（响度）求时间上的平均值。如果平均值较大则说明有这个音'''
-    avg_re = numpy.mean(Xdb[433])  # re音的基音【329.5Hz左右】在时变频谱矩阵中的行，为第433行左右。要是觉得不准，这个值可以自己调
+    avg_re = numpy.mean(Xdb[422])  # re音的基音【329.5Hz左右】在时变频谱矩阵中的行，为第433行左右。要是觉得不准，这个值可以自己调
     #print('re的强度为',avg_re)
     avg_mi = numpy.mean(Xdb[477])  # mi音所在的行
     #print('mi的强度为',avg_mi)
-    avg_fa = numpy.mean(Xdb[520])  # fa音所在的行
+    avg_fa = numpy.mean(Xdb[515])  # fa音所在的行
     #print('fa的强度为',avg_fa)
     avg_so=numpy.mean(Xdb[567])#so音所在的行
     #print('so的强度为',avg_so)
@@ -82,7 +82,7 @@ while True: #死循环--一直运行
     avg_xi=numpy.mean(Xdb[710])#xi音所在的行
     #print('xi的强度为',avg_xi)
     avg_do=numpy.mean(Xdb[760])#高音do所在的行
-    #print('高音do的强度为',avg_do)
+    print('高音do的强度为',avg_do)
 
 
     '''4. 获取鼠标当前位置'''
@@ -92,17 +92,17 @@ while True: #死循环--一直运行
     y=mouse_position[1]
 
     '''5. 操作鼠标'''
-    if avg_re>-40:  #如果re音的基音（时变频谱矩阵中的第433行）振幅的平均值大于-40，则说明有这个音。【觉得不准的话，这个阈值可以自己调】
-        right_move()    #有re音的话则启动上面定义的right_move()函数，使鼠标向右移
-    if avg_mi>-40:
+    if avg_re>-55:  #如果re音的基音（时变频谱矩阵中的第433行）振幅的平均值大于-52，则说明有这个音。【觉得不准的话，这个阈值可以自己调】
+        up_move()    #有re音的话则启动上面定义的right_move()函数，使鼠标向右移
+    if avg_mi>-55:
         left_move()
     if avg_fa>-40:
         down_move()
     if avg_so>-30:
-        up_move()
-    if avg_la>-40:
+        right_move()
+    if avg_la>-35:
         mouse_upscroll()
     if avg_xi>-30:
         mouse_downscroll()
-    if avg_do>-20:
+    if avg_do>-30:
         mouse_click()
